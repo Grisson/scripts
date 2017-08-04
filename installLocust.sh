@@ -2,5 +2,6 @@
 
 sudo apt-get update
 sudo apt-get install -y python-pip
-pip install -y locustio, pyzmq
+pip install --upgrade pip
+pip install locustio pyzmq
 
