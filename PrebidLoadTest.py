@@ -3,7 +3,7 @@ from locust import HttpLocust, TaskSet, task
 class MyTaskSet(TaskSet):
     @task
     def index(self):
-        with client.post("/auction", catch_response=True) as response:
+        with self.client.post("/auction", catch_response=True) as response:
             if response.status_code == 200:
                 response.success()
             else:
