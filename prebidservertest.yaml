@@ -8,7 +8,7 @@ spec:
     metadata:
       labels:
         app: nginx
-    sepc:
+    spec:
       containers:
       - name: nginx
         image: nginx:1.7.9
