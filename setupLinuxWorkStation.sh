@@ -1,16 +1,20 @@
 #! /bin/bash
 
-sudo apt-add-repository ppa:fish-shell/release-2
 sudo apt update
 sudo apt install -y tmux \
     vim \
     git \
-    golang-go \
-    apt-transport-https \
+    tree \
+    curl 
+
+
+#########################
+# install docker
+########################
+
+sudo apt install apt-transport-https \
     ca-certificates \
-    curl \
-    software-properties-common \
-    tree
+    software-properties-common 
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
@@ -24,6 +28,11 @@ sudo apt update
 
 sudo apt install -y docker-ce
 
+################
+# install go
+###############
+
+#sudo apt install golang-go
 #touch ~/.profiles
 
 #mkdir -p ~/_c/go/bin
@@ -34,5 +43,10 @@ sudo apt install -y docker-ce
 #echo "export GOPATH=~/_c/go" >> ~/.profiles
 #echo "export PATH=$PATH:$GOROOT/bin" >> ~/.profiles
 
+#################
+# install fish
+#################
+#sudo apt-add-repository ppa:fish-shell/release-2
+#sudo apt update
 #sudo apt install -y fish
 #chsh -s /usr/bin/fish
