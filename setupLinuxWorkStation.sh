@@ -50,3 +50,10 @@ sudo apt install -y docker-ce
 #sudo apt update
 #sudo apt install -y fish
 #chsh -s /usr/bin/fish
+
+
+#################
+# install azure cli
+#################
+sudo apt update && sudo apt install -y libssl-dev libffi-dev python-dev build-essential
+curl -L https://aka.ms/InstallAzureCli | bash
