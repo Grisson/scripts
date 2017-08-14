@@ -1,22 +1,75 @@
+import json
 from locust import HttpLocust, TaskSet, task
 
 class MyTaskSet(TaskSet):
     @task
     def index(self):
-        with self.client.post("/auction", catch_response=True) as response:
+        headers = {
+                    "Host": "mediation.bing.com",
+                    "Connection": "keep-alive",
+                    "Accept": "*/*",
+                    "Origin": "http://www.msn.com",
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36",
+                    "Content-Type": "text/plain;charset=UTF-8",
+                    "Referer": "http://www.msn.com/en-us/?item=staticsmode:debug&item=bing_native_hp:true&xd=BBBI7Kt&na-requesttype=post&na-feedback=true&na-debug=true",
+                    "Accept-Encoding": "gzip, deflate, br",
+                    "Accept-Language": "en-US,en;q=0.8"
+                }
+        
+        payload = {
+                    "timeout_millis": 2000,
+                    "tid": "abcd",
+                    "ad_units": [
+                        {
+                            "code": "first-tag",
+                            "sizes": [
+                                {
+                                    "w": 300,
+                                    "h": 600
+                                },
+                                {
+                                    "w": 300,
+                                    "h": 250
+                                }
+                            ],
+                            "bids": [
+                                {
+                                    "bidder": "appnexus",
+                                    "bid_id": "random-id-from-pbjs-0",
+                                    "params": {
+                                        "placementId": 8394,
+                                        "member": "958",
+                                        "keywords": [
+                                            {
+                                                "key": "genre",
+                                                "value": [
+                                                    "jazz",
+                                                    "pop"
+                                                ]
+                                            },
+                                            {
+                                                "key": "myEmptyKey",
+                                                "value": []
+                                            }
+                                        ],
+                                        "trafficSourceCode": "ppc-exchange",
+                                        "reserve": 1.5,
+                                        "position": "below"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+        
+        with self.client.post("/auction", data=json.dumps(payload), headers=headers, catch_response=True) as response:
+            # print response.content
             if response.status_code == 200:
                 response.success()
             else:
                 response.failure("Wrong")
 
-    def scan_parcel(self):
-        headers = {'content-type': 'application/json', 'dpdsession': '06784db0-784a-11e7-a1fa-85ad1b51d266', 'highlander': 'true', 'cache-control': 'no-cache', 'dpdclient': 'application/json'}
-        payload = {"driverCode": "0056*FD8608", "labelNumber": "%0ML11XR15500748427135832826", "dateTime": "2017-08-03 03:00:41"}
-
-        self.client.put("/depot/0056/route/796/?action=loadParcel", data=json.dumps(payload), headers=headers)
-
-
 class MyLocust(HttpLocust):
     task_set = MyTaskSet
-    min_wait = 5
-    max_wait = 7
+    min_wait = 1 #5
+    max_wait = 2 #7
