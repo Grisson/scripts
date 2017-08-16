@@ -4,4 +4,4 @@
 
 #sudo docker run -d -p 80:8000 grissonz/prebid-server
 
-sudo docker run -d -p 80:8000 mediationhubint.azurecr.io/grissonz/prebid-server-withbing
+sudo docker run -d -p 80:8000 mediationhubint.azurecr.io/grissonz/prebid-server-withbing3
