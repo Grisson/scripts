@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: prebidserver-frontend
-        image: grissonz/prebid-server
+        image: mediationhubint.azurecr.io/grissonz/mediation:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
 ---
 apiVersion: v1
 kind: Service
@@ -30,7 +30,7 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 8000
   selector:
     app: prebidserver-frontend
     env: test
