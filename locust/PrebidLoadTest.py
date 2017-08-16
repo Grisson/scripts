@@ -16,51 +16,38 @@ class MyTaskSet(TaskSet):
                     "Accept-Language": "en-US,en;q=0.8"
                 }
         
-        payload = {
-                    "tid": "abcd",
-                    "ad_units": [
-                        {
-                            "code": "first",
-                            "sizes": [
-                                {
-                                    "w": 300,
-                                    "h": 250
-                                }
-                            ],
-                            "bids": [
-                                {
-                                    "bidder": "bing",
-                                    "params": {
-                                        "appId": "1234"
-                                    }
-                                },
-                                {
-                                    "bidder": "appnexus"
-                                }
-                            ]
-                        },
-                        {
-                            "code": "second",
-                            "sizes": [
-                                {
-                                    "w": 728,
-                                    "h": 90
-                                }
-                            ],
-                            "bids": [
-                                {
-                                    "bidder": "indexExchange"
-                                },
-                                {
-                                    "bidder": "appnexus"
-                                }
-                            ]
-                        }
-                    ]
+        payload = { 
+                    "tid": "abcd", 
+                    "ad_units": [{ 
+                        "code": "first", 
+                        "sizes": [{ 
+                            "w": 300, 
+                            "h": 250 
+                        }], 
+                        "bids": [{ 
+                            "bidder": "bing" ,
+                            "params": {
+                            "appId": "1234"
+                            }
+                        }, { 
+                            "bidder": "appnexus" 
+                        }] 
+                    }, { 
+                        "code": "second", 
+                        "sizes": [{ 
+                            "w": 728, 
+                            "h": 90 
+                        }], 
+                        "bids": [{ 
+                            "bidder": "indexExchange" 
+                        }, { 
+                            "bidder": "appnexus" 
+                        }] 
+                    }] 
                 }
         
         with self.client.post("/auction", data=json.dumps(payload), headers=headers, catch_response=True) as response:
-            print response.content
+            #print response.content
             if response.status_code == 200:
                 response.success()
             else:
@@ -68,5 +55,5 @@ class MyTaskSet(TaskSet):
 
 class MyLocust(HttpLocust):
     task_set = MyTaskSet
-    min_wait = 3000 #5
-    max_wait = 3000 #7
+    min_wait = 3 #5
+    max_wait = 3 #7
