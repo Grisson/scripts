@@ -33,6 +33,12 @@ class MyTaskSet(TaskSet):
                             ],
                             "bids": [
                                 {
+                                    "bidder": "bing",
+                                    "params": {
+                                        "appId": "1234"
+                                    }
+                                },
+                                {
                                     "bidder": "appnexus",
                                     "bid_id": "random-id-from-pbjs-0",
                                     "params": {
