@@ -16,7 +16,7 @@ kubectl create -f ./prebidServer.yaml
 kubectl get service prebidserver-svc --watch
 
 
-kubectl scale --replicas=5 deployment/prebidserver-deployment
+kubectl scale --replicas=64 deploy/prebidserver-deployment
 
 
 //
@@ -40,4 +40,4 @@ kubectl create -f ./prebidServer.yaml
 kubectl get service prebidserver-svc --watch
 
 
-kubectl scale --replicas=5 deployment/prebidserver-deployment
+kubectl scale --replicas=64 deploy/prebidserver-deployment
