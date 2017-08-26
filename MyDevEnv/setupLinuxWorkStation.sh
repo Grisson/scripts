@@ -12,6 +12,8 @@ sudo apt install -y tmux \
 # install docker
 ########################
 
+curl -fsSL get.docker.com | sh
+
 sudo apt install apt-transport-https \
     ca-certificates \
     software-properties-common 
@@ -57,3 +59,6 @@ sudo apt install -y docker-ce
 #################
 sudo apt update && sudo apt install -y libssl-dev libffi-dev python-dev build-essential
 curl -L https://aka.ms/InstallAzureCli | bash
+
+
+exec -l $SHELL

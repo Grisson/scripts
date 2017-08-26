@@ -6,11 +6,11 @@ export PATH=$PATH:/Users/grisson/bin:$GOBIN
 
 [ -z "$TMUX" ] && export TERM=xterm-256color
 
-source '/Users/grisson/lib/azure-cli/az.completion'
+# source '/Users/grisson/lib/azure-cli/az.completion'
 
 
 # Path to the bash it configuration
-export BASH_IT="/Users/grisson/.bash_it"
+export BASH_IT="/home/grisson/.bash_it"
 
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
