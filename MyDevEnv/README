@@ -1,0 +1,22 @@
+What is in my Linux dev workstation.
+ 
+
+Thanks to my new job, I finally get a chance to use Linux as my main develop environment. I want to document here to show how I set up my environment to make me look like a pro. :)
+
+I. Shell
+I use bash because it works almost everywhere. I used fish shell for a while. But I gave it up because of its impactiable wit Bash.
+
+II. Bash-It
+I use bash-it because it doesn't raly on Powerline. My experience with Powerline is awful.
+
+III. Tmux
+I need to ssh to multiple servers and work on them simultaneously. So, I use tmux for its multi-window capability.
+
+IV. vim-plug
+I use vim-plug for it simplicity.
+
+V. Azure Cli
+It is super handy if you use Azure
+
+
+That is it.
