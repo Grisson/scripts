@@ -24,6 +24,7 @@ metadata:
   labels:
     run: my-prebidserver
 spec:
+  type: LoadBalancer
   ports:
   - port: 80
     targetPort: 8000
