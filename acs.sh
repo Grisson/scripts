@@ -24,6 +24,9 @@ kubectl describe services/kprebidserver-svc
 
 
 kubectl scale --replicas=64 deploy/prebidserver-deployment
+az acs scale -g myResourceGroup -n containerservice-myACSName --new-agent-count 10
+
+
 kubectl set image deployments/prebidserver-deployment  prebidserver-deployment= 
 kubectl rollout status deployments/prebidserver-deployment
 kubectl rollout undeo deployments/prebidserver-deployment
