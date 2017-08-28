@@ -21,7 +21,7 @@ metadata:
   name: prebidserver-svc
   labels:
     run: my-prebidserver
-spec:clear
+spec:
   ports:
   - port: 80
     targetPort: 8000
