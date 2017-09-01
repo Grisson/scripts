@@ -17,86 +17,42 @@ class MyTaskSet(TaskSet):
                 }
         
         payload = {
-                    "tid": "abcd",
-                    "ad_units": [
+                    "imp": [
                         {
-                            "code": "first",
-                            "sizes": [
-                                {
-                                    "w": 300,
-                                    "h": 600
-                                },
-                                {
-                                    "w": 300,
-                                    "h": 250
-                                }
+                            "id": "b5adb39b-302d-4471-bece-19edfde07914"
+                        }
+                    ],
+                    "site": {
+                        "domain": "www.msn.com",
+                        "cat": [
+                            "homepage"
+                        ],
+                        "page": "http://www.msn.com/en-us/",
+                        "keywords": [
+                            "MSN.com - Hotmail, Outlook, Skype, Bing, Latest News, Photos & Videos"
+                        ],
+                        "publisher": {
+                            "id": "1239585",
+                            "name": "msn",
+                            "ext": {
+                                "apikey": "ARAF5kVAkFcXQk5pMJxz4aq/U8/DsGGEHy/Gj67FcQebinv/RwKLs6b9ZXpwvV8y4dw=",
+                                "tracingtag": "infopane-1"
+                            }
+                        },
+                        "content": {
+                            "url": "http://www.msn.com/en-us/",
+                            "title": "MSN.com - Hotmail, Outlook, Skype, Bing, Latest News, Photos & Videos",
+                            "cat": [
+                                "homepage"
                             ],
-                            "bids": [
-                                {
-                                    "bidder": "appnexus",
-                                    "bid_id": "random-id-from-pbjs-0",
-                                    "params": {
-                                        "placementId": 8394,
-                                        "member": "958",
-                                        "keywords": [
-                                            {
-                                                "key": "genre",
-                                                "value": [
-                                                    "jazz",
-                                                    "pop"
-                                                ]
-                                            },
-                                            {
-                                                "key": "myEmptyKey",
-                                                "value": []
-                                            }
-                                        ],
-                                        "trafficSourceCode": "ppc-exchange",
-                                        "reserve": 1.5,
-                                        "position": "below"
-                                    }
-                                }
+                            "keywords": [
+                                "MSN.com - Hotmail, Outlook, Skype, Bing, Latest News, Photos & Videos"
                             ]
                         },
-                        {
-                            "code": "second",
-                            "sizes": [
-                                {
-                                    "w": 728,
-                                    "h": 90
-                                }
-                            ],
-                            "bids": [
-                                {
-                                    "bidder": "indexExchange"
-                                },
-                                {
-                                    "bidder": "appnexus",
-                                    "bid_id": "random-id-from-pbjs-0",
-                                    "params": {
-                                        "placementId": 8394,
-                                        "member": "958",
-                                        "keywords": [
-                                            {
-                                                "key": "genre",
-                                                "value": [
-                                                    "jazz",
-                                                    "pop"
-                                                ]
-                                            },
-                                            {
-                                                "key": "myEmptyKey",
-                                                "value": []
-                                            }
-                                        ],
-                                        "trafficSourceCode": "ppc-exchange",
-                                        "reserve": 1.5,
-                                        "position": "below"
-                                    }
-                                }
-                            ]
+                        "ext": {
+                            "pagetype": "<pagetype>"
                         }
-                    ]
+                    }
                 }
         
         with self.client.post("/auction", data=json.dumps(payload), headers=headers, catch_response=True) as response:
