@@ -2,13 +2,14 @@
 
 az group create --name PACSG --location westus
 
-acs create --orchestrator-type=kubernetes --resource-group=PACSG --name=k8C1 --generate-ssh-keys --agent-count=2 --agent-vm-size=Standard_DS4_v2  --location westus
+acs create --orchestrator-type=kubernetes --resource-group=PACSG --name=k8C1 --generate-ssh-keys --agent-count=2 \
+    --agent-vm-size=Standard_DS4_v2 --ssh-key-value ~/.ssh/mediation.int.id_rsa.pub --location westus
 
 sudo az acs kubernetes install-cli
 
 acs kubernetes get-credentials --resource-group=PACSG --name=k8C1
 //This command downloads the cluster credentials to $HOME/.kube/config, where kubectl expects it to be located.
-
+acs kubernetes get-credentials --resource-group Mediation-Int --name Mediation-Int --ssh-key-file /Users/grisson/.ssh/mediation.int.id_rsa
 
 kubectl get nodes
 kubectl describe pods
@@ -29,7 +30,7 @@ az acs scale -g myResourceGroup -n containerservice-myACSName --new-agent-count 
 
 kubectl set image deployments/prebidserver-deployment  prebidserver-deployment= 
 kubectl rollout status deployments/prebidserver-deployment
-kubectl rollout undeo deployments/prebidserver-deployment
+kubectl rollout undo deployments/prebidserver-deployment
 
 
 //
@@ -54,3 +55,47 @@ kubectl get service prebidserver-svc --watch
 
 
 kubectl scale --replicas=64 deploy/prebidserver-deployment
+
+// to check dns service. https://github.com/kubernetes/kubernetes/blob/master/cluster/addons/dns/README.md#how-do-i-configure-it
+kubectl get services kube-dns --namespace=kube-system
+
+
+kubectl create secret generic <name> --from-file=<path> --from-file=<path>
+kubectl get secrets
+kubectl get secret <name> -o yaml
+
+// yaml to create secret
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysecret
+type: Opaque
+data:
+  username: YWRtaW4=
+  password: MWYyZDFlMmU2N2Rm
+
+
+// yaml to use secret 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-env-pod
+spec:
+  containers:
+    - name: mycontainer
+      image: redis
+      env:
+        - name: SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: username
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: password
+  restartPolicy: Never
+
+kubectl get pods/podname -o yaml,  you can see the spec.serviceAccountName field has 
+  serviceAccountName: default

@@ -1,26 +1,24 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: prebidserver-deployment
+  name: mediation-deployment
 spec:
   replicas: 32
   template:
     metadata:
       labels:
-        run: my-prebidserver
+        svc: mediationservice
     spec:
       containers:
-      - name: my-prebidserver
-        image: mediationhubint.azurecr.io/grissonz/mediation:latest
+      - name: mediationserviceimage
+        image: mediationhubint.azurecr.io/dev/mediation:latest
         ports:
         - containerPort: 8000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: prebidserver-svc
-  labels:
-    run: my-prebidserver
+  name: mediation-svc
 spec:
   type: LoadBalancer
   ports:
@@ -28,4 +26,4 @@ spec:
     targetPort: 8000
     protocol: TCP
   selector:
-    run: my-prebidserver
+    svc: mediationservice
