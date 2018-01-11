@@ -99,3 +99,13 @@ spec:
 
 kubectl get pods/podname -o yaml,  you can see the spec.serviceAccountName field has 
   serviceAccountName: default
+
+
+// Add new data center
+  acs create --orchestrator-type=kubernetes --resource-group=Mediation-PPE-DB --name=Mediation-PPE-DB \
+    --ssh-key-value ~/.ssh/mediation.ppe.id_rsa.pub --location northeurope \
+    --master-count=1 --master-vm-size=Standard_D2_v2 \
+    --agent-count=4 --agent-vm-size=Standard_DS2_v2
+
+
+acs kubernetes get-credentials --resource-group=Mediation-PPE-DB --name=Mediation-PPE-DB --ssh-key-value ~/.ssh/mediation.ppe.id_rsa
