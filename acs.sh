@@ -101,11 +101,24 @@ kubectl get pods/podname -o yaml,  you can see the spec.serviceAccountName field
   serviceAccountName: default
 
 
-// Add new data center
-  acs create --orchestrator-type=kubernetes --resource-group=Mediation-PPE-DB --name=Mediation-PPE-DB \
-    --ssh-key-value ~/.ssh/mediation.ppe.id_rsa.pub --location northeurope \
-    --master-count=1 --master-vm-size=Standard_D2_v2 \
-    --agent-count=4 --agent-vm-size=Standard_DS2_v2
 
+
+
+// Add new data center
+docker run --rm -it -v ${HOME}:/root microsoft/azure-cli
+
+az account set --subscription NativeAds-INT
+
+az group create 
+
+  acs create --orchestrator-type=kubernetes --resource-group=M-PPE-WUS --name=M-PPE-WUS \
+    --ssh-key-value ~/.ssh/mediation.ppe.id_rsa.pub --location westus \
+    --master-count=3 --master-vm-size=Standard_D2_v2 \
+    --agent-count=16 --agent-vm-size=Standard_DS3_v2
+
+Standard_D4s_v3   -- Dsv3
+Standard_DS3_v2
+Standard_D3_v2
+20180125073000
 
 acs kubernetes get-credentials --resource-group=Mediation-PPE-DB --name=Mediation-PPE-DB --ssh-key-value ~/.ssh/mediation.ppe.id_rsa
