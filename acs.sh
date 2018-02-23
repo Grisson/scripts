@@ -122,3 +122,7 @@ Standard_D3_v2
 20180125073000
 
 acs kubernetes get-credentials --resource-group=Mediation-PPE-DB --name=Mediation-PPE-DB --ssh-key-value ~/.ssh/mediation.ppe.id_rsa
+
+
+
+kubectl autoscale deployment mediation-deployment --min=1 --max=20 --cpu-percent=10
