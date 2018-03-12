@@ -106,6 +106,8 @@ kubectl get pods/podname -o yaml,  you can see the spec.serviceAccountName field
 
 // Add new data center
 docker run --rm -it -v ${HOME}:/root microsoft/azure-cli
+docker run --rm -it -v c:/_c/grissonz:/root microsoft/azure-cli
+docker run --rm -it -v c:/_c/grissonz:/root azuresdk/azure-cli-python
 
 az account set --subscription NativeAds-INT
 
