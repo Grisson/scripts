@@ -125,6 +125,9 @@ Standard_D3_v2
 
 acs kubernetes get-credentials --resource-group=Mediation-PPE-DB --name=Mediation-PPE-DB --ssh-key-value ~/.ssh/mediation.ppe.id_rsa
 
+az network application-gateway create --name M-EA-IN-PPE-Gateway --location eastasia --resource-group M-PPE-EA --vnet-name k8s-vnet-42A4FC08 --subnet GatewaySubnet --capacity 2 --sku Standard_Large --http-settings-cookie-based-affinity Disabled --frontend-port 443 --http-settings-port 80 --http-settings-protocol Http --public-ip-address M-EA-IN-PPE-GATEWAY-PIP --cert-file foreverything.mediation.trafficmanager.net.pfx --cert-password "n0_password"
 
+
+az network application-gateway create --name M-SEA-IN-PPE-Gateway --location southeastasia --resource-group M-PPE-SEA --vnet-name k8s-vnet-10662354 --subnet GatewaySubnet --capacity 2 --sku Standard_Large --http-settings-cookie-based-affinity Disabled --frontend-port 443 --http-settings-port 80 --http-settings-protocol Http --public-ip-address M-EA-IN-PPE-GATEWAY-PIP --cert-file foreverything.mediation.trafficmanager.net.pfx --cert-password "n0_password"
 
 kubectl autoscale deployment mediation-deployment --min=1 --max=20 --cpu-percent=10
