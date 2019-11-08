@@ -46,10 +46,14 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Initialize plugin system
 call plug#end()
 
+syntax on
 set tabstop=4
+set autoindent
+set softtabstop=4
 set expandtab
+set cursorline
 set nu
 map <C-o> :NERDTreeToggle<CR>
 set noshowmode
-set laststatus=2
-syntax on
+
+
