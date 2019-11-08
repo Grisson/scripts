@@ -53,9 +53,3 @@ map <C-o> :NERDTreeToggle<CR>
 set noshowmode
 set laststatus=2
 syntax on
-colorscheme desert
-
-let g:lightline = {
-      \ 'colorscheme': 'landscape',
-      \ }
-
