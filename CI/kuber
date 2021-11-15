@@ -1,1 +1,0 @@
-az acs kubernetes get-credentials --resource-group=PrebidServerTestCluster --name=PrebidServerTestClusterv2
