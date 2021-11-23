@@ -14,7 +14,7 @@ cp zshrc ~/.zshrc
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp vimrc ~/.vimrc
 # run the plug install command
-vim +PluginInstall +qall
+vim +PlugInstall +qa
 
 # install tmux
 brew install tmux

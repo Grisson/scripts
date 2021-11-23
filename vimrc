@@ -44,5 +44,5 @@ set nu
 map <C-o> :NERDTreeToggle<CR>
 set noshowmode
 
-colorscheme gruvbox
+
 set background=dark
