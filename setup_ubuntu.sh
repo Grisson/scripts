@@ -61,3 +61,32 @@ conda config --set auto_activate_base false
 #
 conda create --name tf python=3.10
 conda activate tf
+conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+mkdir -p $CONDA_PREFIX/etc/conda/activate.d
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/' > $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+pip install --upgrade pip
+pip install tensorflow
+pip install nvidia-pyindex
+pip install --upgrade nvidia-tensorrt
+
+echo "" >> ~/.bashrc
+echo "export TF_CPP_MIN_LOG_LEVEL=2 " >> ~/.bashrc
+
+conda deactivate
+
+# python3 -c "import tensorflow as tf; print(tf.reduce_sum(tf.random.normal([1000, 1000])))"
+# python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+
+
+#
+# PyTorch
+#
+conda create --name pt python=3.10
+conda activate pt
+mkdir -p $CONDA_PREFIX/etc/conda/activate.d
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/' > $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+
+conda deactivate
+
+# python3 -c "import torch; print(torch.cuda.is_available())"
