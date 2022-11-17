@@ -107,6 +107,7 @@ conda create --name ros python=3.10
 conda activate ros
 mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 echo 'source /opt/ros/humble/setup.bash' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+pip3 install catkin_pkg
 # echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 
 
